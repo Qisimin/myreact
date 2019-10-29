@@ -1,0 +1,20 @@
+@import url('../../style/index.less');
+@color:#666;
+.less{
+    .test(@w,@h){
+        width:unit(@w,px); // @wpx  也可写rem
+        height:unit(@h,px);
+    }
+    // background-color: @color*2;
+    h3{
+        color: yellow;
+    }
+    .son1{
+        .test(50,60);
+        background-color:@themeColor;
+    }
+    .son2{
+        .test(100,100);
+        background-color:aqua;
+    }
+}
