@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './router'
 // import App from './demo/less/index';
-import App from './demo/antd';
+// import App from './demo/antd';
 // import 'antd/dist/antd.css'
 //全局引入样式
 // import App from './App';
