@@ -1,56 +1,60 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
+import webStorage from '../../utils/webstorage'
 const { SubMenu } = Menu;
-const root=[//模拟数据
-    {
-        name:'首页',
-        path:'/admin/home',
-        key:'/admin/home'
-    },
-    {
-        name:'用户管理',
-        path:'/admin/user',
-        key:'/admin/user',
-        children:[
-            {name:'权限管理',path:'/admin/user/root',key:'/admin/user/root'},
-            {
-                name:'信息管理',
-                path:'/admin/user/info',
-                key:'/admin/user/info',
-                children:[
-                    {
-                        name:'信管1',
-                        path:'/admin/user/info/info1',
-                        key:'/admin/user/info/info1',
-                    },
-                    {
-                        name:'信管2',
-                        path:'/admin/user/info/info2',
-                        key:'/admin/user/info/info2',
-                        children:[
-                            {
-                                name:'信管21',
-                                path:'/admin/user/info/info2/info21',
-                                key:'/admin/user/info/info2/info21',
-                            },
-                            {
-                                name:'信管22',
-                                path:'/admin/user/info/info2/info22',
-                                key:'/admin/user/info/info2/info22'                                
-                            }
-                        ]
-                    }
-                ]
-            },
-        ]
-    },
-    {
-        name:'设置',
-        path:'/admin/setting',
-        key:'/admin/setting'
-    },
-]
+const root = webStorage.getItem('rootList')
+// const root=[//模拟数据
+//     {
+//         name:'首页',
+//         path:'/admin/home',
+//         key:'/admin/home'
+//     },
+//     {
+//         name:'用户管理',
+//         path:'/admin/user',
+//         key:'/admin/user',
+//         children:[
+//             {name:'权限管理',path:'/admin/user/root',key:'/admin/user/root'},
+//             {
+//                 name:'信息管理',
+//                 path:'/admin/user/info',
+//                 key:'/admin/user/info',
+//                 children:[
+//                     {
+//                         name:'信管1',
+//                         path:'/admin/user/info/info1',
+//                         key:'/admin/user/info/info1',
+//                     },
+//                     {
+//                         name:'信管2',
+//                         path:'/admin/user/info/info2',
+//                         key:'/admin/user/info/info2',
+//                         children:[
+//                             {
+//                                 name:'信管21',
+//                                 path:'/admin/user/info/info2/info21',
+//                                 key:'/admin/user/info/info2/info21',
+//                             },
+//                             {
+//                                 name:'信管22',
+//                                 path:'/admin/user/info/info2/info22',
+//                                 key:'/admin/user/info/info2/info22'                                
+//                             }
+//                         ]
+//                     }
+//                 ]
+//             },
+//         ]
+//     },
+//     {
+//         name:'设置',
+//         path:'/admin/setting',
+//         key:'/admin/setting'
+//     },
+// ]
+
+
 class CustomSlider extends React.Component{
     jump=(path)=>{
         // console.log(this)
@@ -60,11 +64,11 @@ class CustomSlider extends React.Component{
     renderItem=(data)=>{
         //1.判断有没有children   有 sub    没有 item
         return  data.map((item,index)=>{
-            if(item.children){
+            if(item.subprime){
                 //渲染次级导航
                 return(
-                    <SubMenu key={item.key} title={item.name}>
-                        {this.renderItem(item.children)}
+                    <SubMenu title={item.name}>
+                        {this.renderItem(item.subprime)}
                     </SubMenu>
                 )
             }else{
